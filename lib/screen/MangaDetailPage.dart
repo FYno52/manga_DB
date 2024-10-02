@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'ReviewFormPage.dart';
+import '../model/review_model.dart';
 
 class MangaDetailPage extends StatelessWidget {
   final String mangaTitle;
 
-  MangaDetailPage({required this.mangaTitle});
+  MangaDetailPage({required this.mangaTitle}); // Define mangaTitle parameter
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +23,37 @@ class MangaDetailPage extends StatelessWidget {
             Text(
               mangaTitle,
               style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 10),
             Text(
-              "This is a detailed description of the manga \"$mangaTitle\". You can add more information here like genre, author, summary, etc.",
+              "Details about the manga $mangaTitle.",
               style: TextStyle(fontSize: 16, color: Colors.white70),
             ),
             SizedBox(height: 20),
             Text(
-              "Score: 95/100", // デモ用スコア
+              "Score: 95/100",
               style: TextStyle(fontSize: 18, color: Colors.white70),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ReviewFormPage(
+                      onReviewAdded: (Review review) {
+                        // Handle review addition logic here
+                        print(
+                            'Review Added: ${review.manga}, Score: ${review.score}, Comment: ${review.comment}');
+                      },
+                    ),
+                  ),
+                );
+              },
+              child: Text('Add a Review'),
             ),
           ],
         ),

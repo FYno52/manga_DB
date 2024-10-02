@@ -3,6 +3,7 @@ import 'package:manga_app/model/user_model.dart';
 import 'package:manga_app/screen/MangaDetailPage.dart';
 import 'package:manga_app/screen/ReviewDetailPage.dart';
 import 'package:manga_app/screen/ReviewPageScreen.dart';
+import 'package:manga_app/screen/SearchPage.dart';
 
 import '../model/review_model.dart';
 
@@ -51,6 +52,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xFF171A21), // シックなAppBar色（さらに暗めの灰色）
         title: Text('${user.username}\'s Profile'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              // 検索ページに遷移
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchPage(), // SearchPage への画面遷移
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
